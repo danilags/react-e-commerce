@@ -1,3 +1,5 @@
+'use strict'
+
 const db = require('../models/')
 
 let getAllUser = function(req, res) {
@@ -58,6 +60,16 @@ let updateUser = function(req, res) {
   })
 }
 
+let findOneUser = function(req, res) {
+  db.User.findById(req.params.id)
+    .then(function(_user) {
+      res.send(_user)
+    })
+    .catch(function(err) {
+      console.log(err.message);
+    })
+}
+
 let removeUser = function(req, res) {
   db.User.destroy({
     where: {
@@ -72,5 +84,6 @@ module.exports = {
   getAllUser,
   createUser,
   updateUser,
+  findOneUser,
   removeUser
 }
