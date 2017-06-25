@@ -1,0 +1,54 @@
+.top-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  width: 100%;
+  background: #333;
+}
+
+.top-nav ul li {
+    float: left;
+}
+
+.top-nav ul li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/* button nav  */
+
+.bottom-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  width: 100%;
+  background: #333;
+}
+
+.bottom-nav ul li {
+    float: left;
+}
+
+.bottom-nav ul li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+@media screen and (max-width: 600px) {
+  .top-nav ul li {
+      float: none;
+  }
+
+  .bottom-nav ul li {
+      float: none;
+  }
+}
+
