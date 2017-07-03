@@ -1,6 +1,7 @@
 import React from 'react';
 
 import TopNavigation from './TopNavigation';
+import Content from './Content';
 
 class Aqua extends React.Component {
   constructor(props) {
@@ -11,6 +12,7 @@ class Aqua extends React.Component {
     return (
       <div>
         <TopNavigation />
+        <Content />
       </div>
     )
   }
