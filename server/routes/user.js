@@ -4,7 +4,7 @@ const userCont = require('../controllers/user')
 
 router.get('/', userCont.getAllUser)
 
-router.get('/profile', userCont.findOneUser)
+router.get('/profile/:id', userCont.findOneUser)
 
 router.post('/', userCont.createUser)
 

@@ -5,7 +5,11 @@ const db = require('../models/')
 let getAllUser = function(req, res) {
   db.User.findAll()
     .then(function(_user) {
-      res.send({success: true, data: _user})
+      res.send({
+        data: _user,
+        message: 'List of Users',
+        status_code: 200
+      })
     })
     .catch(function(err) {
       res.send(err.message)
@@ -13,18 +17,6 @@ let getAllUser = function(req, res) {
 }
 
 let createUser = function(req, res) {
-  // db.User.findOrCreate({where: {email: req.body.email}, defaults: {
-  //     firstname: req.body.firstname,
-  //     lastname: req.body.lastname,
-  //     password: req.body.password,
-  //     createdAt: new Date,
-  //     updatedAt: new Date
-  //   }})
-  //   .spread((user, created) => {
-  //     console.log("use : ..", user.get());
-  //     console.log(" ??? ", created);
-  //   })
-  // //
   db.User.create({
     firstname: req.body.firstname,
     lastname: req.body.lastname,
@@ -63,7 +55,11 @@ let updateUser = function(req, res) {
 let findOneUser = function(req, res) {
   db.User.findById(req.params.id)
     .then(function(_user) {
-      res.send(_user)
+      res.send({
+        data: _user,
+        message: 'User Details',
+        status_code: 200
+      })
     })
     .catch(function(err) {
       console.log(err.message);
