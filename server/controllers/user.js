@@ -2,12 +2,54 @@
 
 const db = require('../models/')
 
+const UserModel = require('../models/').User
+
 let getAllUser = function(req, res) {
   db.User.findAll()
     .then(function(_user) {
       res.send({
         data: _user,
         message: 'List of Users',
+        status_code: 200
+      })
+    })
+    .catch(function(err) {
+      res.send(err.message)
+    })
+}
+
+let userMakeOrder = function(req, res) {
+  db.UserProduct.create({
+    UserId: req.body.UserId,
+    ProductId: req.body.ProductId,
+    status: req.body.status,
+  })
+  .then(function(data) {
+    res.send({
+      data: data,
+      message: 'Order success',
+      status_code: 200
+    })
+  })
+  .catch(function(err) {
+    res.send({
+      message: err.message
+    })
+  })
+}
+
+let getAllOrder = function(req, res) {
+  db.UserProduct.findAll({
+    include: [{
+      model: db.User,
+      as: 'Singer'
+    }]
+  })
+    .then(function(order) {
+      console.log("APA ORDER INI ", order);
+      res.send({
+        data: order,
+        message: 'List of Orders',
         status_code: 200
       })
     })
@@ -81,5 +123,7 @@ module.exports = {
   createUser,
   updateUser,
   findOneUser,
-  removeUser
+  removeUser,
+  userMakeOrder,
+  getAllOrder,
 }

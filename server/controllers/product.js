@@ -5,7 +5,11 @@ const db = require('../models/')
 let findAllProduct = function(req, res) {
   db.Product.findAll()
     .then(function(_products) {
-      res.send(_products)
+      res.send({
+        data: _products,
+        message: 'List of Products',
+        status_code: 200
+      })
     })
     .catch(function(err) {
       console.log(err.message);
@@ -27,7 +31,11 @@ let createProduct = function(req, res) {
 let oneProduct = function(req, res) {
   db.Product.findById(req.params.id)
   .then(function(_product) {
-    res.send(_product)
+    res.send({
+      data: _product,
+      message: 'Details products',
+      status_code: 200
+    })
   })
   .catch(function(err) {
     console.log(err.message);

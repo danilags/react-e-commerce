@@ -12,4 +12,8 @@ router.put('/:id', userCont.updateUser)
 
 router.delete('/:id', userCont.removeUser)
 
+router.post('/order', userCont.userMakeOrder)
+
+router.get('/order', userCont.getAllOrder)
+
 module.exports = router;
