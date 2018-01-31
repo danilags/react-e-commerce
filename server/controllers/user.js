@@ -19,9 +19,11 @@ let getAllUser = function(req, res) {
 }
 
 let userMakeOrder = function(req, res) {
-  db.UserProduct.create({
-    UserId: req.body.UserId,
+  db.Order.create({
+    CustomerId: req.body.CustomerId,
     ProductId: req.body.ProductId,
+    order_detail: req.body.order_detail,
+    quantity: req.body.quantity,
     status: req.body.status,
   })
   .then(function(data) {
@@ -33,17 +35,18 @@ let userMakeOrder = function(req, res) {
   })
   .catch(function(err) {
     res.send({
-      message: err.message
+      message: err.message,
+      status_code: 404
     })
   })
 }
 
 let getAllOrder = function(req, res) {
-  db.UserProduct.findAll({
-    include: [{
+  db.Order.findAll({
+    include: {
       model: db.User,
-      as: 'Singer'
-    }]
+      as : 'user_transaction'
+    }
   })
     .then(function(order) {
       console.log("APA ORDER INI ", order);

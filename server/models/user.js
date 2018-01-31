@@ -5,14 +5,15 @@ module.exports = function(sequelize, DataTypes) {
     lastname: DataTypes.STRING,
     email: DataTypes.STRING,
     password: DataTypes.STRING
-  }, {
-    classMethods: {
-      associate: function(models) {
-        // associations can be defined here
-        User.hasMany(models.UserProduct, { as: 'Singer' });
-        // User.belongsToMany(models.Product, {through: 'UserProduct'})
-      }
-    }
   });
+
+  User.associate = (models) => {
+    User.hasMany(models.Order, {
+      foreignKey: 'CustomerId',
+      onDelete: 'CASCADE',
+      as: 'user_transaction'
+    });
+  }
+
   return User;
 };
